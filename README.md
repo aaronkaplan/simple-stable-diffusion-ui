@@ -17,7 +17,17 @@ Run it on a machine with a working NVIDIA based GPU (tested on NVIDIA GeForce RT
 
 1. git clone it
 2. ``pip install -r requirements``
-3. Run it: ``uvicorn  --host 0.0.0.0 app:app ``
+3. Run it: ``uvicorn  --host 0.0.0.0 app:app ``. **Note**: the first time, you run it, this will take long and download large models.
+
+
+# How to explore the cache?
+``ls -al output/`` as well as using redis-cli to explore the prompt which matched a specific file.
+
+Also, you can use redis-insights to graphically explore the filename to prompt mapping
+
+Go to https://localhost:8001/
+
+![redis-insights](docs/redis-insights-screenshot.png)
 
 
 # How to report bugs?

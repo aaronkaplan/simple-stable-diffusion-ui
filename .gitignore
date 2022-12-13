@@ -1,5 +1,5 @@
 # our cache and output directory
-cache/db/*
+cache/dump.rdb
 output/*
 
 # Byte-compiled / optimized / DLL files
