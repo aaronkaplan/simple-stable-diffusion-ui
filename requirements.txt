@@ -8,3 +8,4 @@ transformers>=4.24.0
 uvicorn>=0.20.0
 redis
 diffusers
+accelerate

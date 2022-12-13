@@ -25,8 +25,13 @@ I recommend at least 8GB of GPU RAM, 10 GB of disk space. See https://www.howtog
 
 1. git clone it
 2. ``pip install -r requirements``
-3. Run it: ``uvicorn  --host 0.0.0.0 app:app ``. **Note**: the first time, you run it, this will take long and download large models.
-4. Install [redis-stack](https://redis.io/docs/stack/). **Note**: of course, you can also just use plain redis]
+3. Install [redis-stack](https://redis.io/docs/stack/). **Note**: of course, you can also just use plain redis]
+4. Run it: ```bash
+export REDIS_HOST=localhost
+export OUTPUTDIR=$(pwd)/output
+uvicorn  --host 0.0.0.0 app.main:app 
+```
+. **Note**: the first time, you run it, this will take long and download large models.
 
 
 ## With docker

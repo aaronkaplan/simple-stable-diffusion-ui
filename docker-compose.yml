@@ -16,13 +16,21 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - $PWD/output:/app/output  
-                #    - $PWD/app:/app
+            # map the output dir to the host
+            - $PWD/output:/output  
         environment:
             - MAX_WORKERS=2
             - REDIS_HOST=redis-stack
             - REDIS_PORT=6379
+            - OUTPUTDIR=/output
         depends_on:
             - redis-stack
         command: /start-reload.sh
+        deploy:
+              resources:
+                reservations:
+                  devices:
+                    - driver: nvidia
+                      count: 1
+                      capabilities: [gpu]
 
