@@ -16,6 +16,7 @@ It comes with:
 You'll need a machine with a working NVIDIA based GPU .
 
 I tested and developed on an NVIDIA GeForce RTX 3080 with Driver Version: 520.56.06    CUDA Version: 11.8  , Ubuntu 20.04
+I recommend at least 8GB of GPU RAM, 10 GB of disk space. See https://www.howtogeek.com/853529/hardware-for-stable-diffusion/
 
 
 # How to install it?
@@ -35,6 +36,7 @@ In case you want to run everything via docker, you can build a docker image and 
 ```bash
 
 docker build -t simple-stable-diffusion-ui:0.1 . --network=host
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001  -v $(pwd)/cache/:/data -v $(pwd)/redis-stack.conf:/etc/redis-stack.conf  redis/redis-stack:latest
 docker-compose up -d
 ```
 

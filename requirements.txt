@@ -7,3 +7,4 @@ tqdm>=4.64.1
 transformers>=4.24.0
 uvicorn>=0.20.0
 redis
+diffusers
