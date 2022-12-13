@@ -1,5 +1,6 @@
 # our cache and output directory
 cache/dump.rdb
+dump.rdb
 output/*
 
 # Byte-compiled / optimized / DLL files
@@ -131,3 +132,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+data/dump.rdb

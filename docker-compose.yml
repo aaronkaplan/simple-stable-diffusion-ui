@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+    redis-stack:
+        image: redis/redis-stack 
+        ports:
+          - "6379:6379"
+          - "8001:8001"
+        volumes:
+          - $PWD/cache/:/data 
+          - $PWD/redis-stack.conf:/redis-stack.conf
+
+    sd:
+        restart: always
+        image: simple-stable-diffusion-ui:0.1  
+        # build: .
+        ports:
+            - "8000:8000"
+        volumes:
+            - $PWD/output:/app/output  
+                #    - $PWD/app:/app
+        environment:
+            - MAX_WORKERS=2
+            - REDIS_HOST=redis-stack
+            - REDIS_PORT=6379
+        depends_on:
+            - redis-stack
+        command: /start-reload.sh
+

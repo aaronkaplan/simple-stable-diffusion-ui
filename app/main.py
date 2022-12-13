@@ -18,7 +18,7 @@ class Inputs(BaseModel):
 
 
 # to serve static files in fastapi
-app.mount("/sd/output", StaticFiles(directory="output"), name="output")
+app.mount("/sd/output", StaticFiles(directory="/app/output"), name="output")
 
 # the cache to store all the prompts and image filenames
 imgcache = Cache()
