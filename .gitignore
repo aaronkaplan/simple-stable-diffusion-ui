@@ -1,3 +1,7 @@
+# our cache and output directory
+cache/db/*
+output/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
