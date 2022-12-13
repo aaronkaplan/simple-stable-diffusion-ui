@@ -29,6 +29,8 @@ Go to https://localhost:8001/
 
 ![redis-insights](docs/redis-insights-screenshot.png)
 
+More documentation on redis-stack [here](https://redis.io/docs/stack/get-started/install/docker/).
+
 
 # How to report bugs?
 Please create a pull request and improve.
