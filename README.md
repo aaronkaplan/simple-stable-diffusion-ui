@@ -41,7 +41,7 @@ In case you want to run everything via docker, you can build a docker image and 
 ```bash
 
 docker build -t simple-stable-diffusion-ui:0.1 . --network=host
-docker run -d --name redis-stack -p 6379:6379 -p 8001:8001  -v $(pwd)/cache/:/data -v $(pwd)/redis-stack.conf:/etc/redis-stack.conf  redis/redis-stack:latest
+# docker run -d --name redis-stack -p 6379:6379 -p 8001:8001  -v $(pwd)/cache/:/data -v $(pwd)/redis-stack.conf:/etc/redis-stack.conf  redis/redis-stack:latest
 docker-compose up -d
 ```
 

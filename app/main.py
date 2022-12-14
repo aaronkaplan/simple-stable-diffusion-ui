@@ -47,7 +47,7 @@ def generate_html_response(text: str, imagepath: str):
 @app.get("/sd/")
 async def textarea(text: str = defaultprompt, response_class=HTMLResponse):
     id = uuid.uuid4()
-    imagepath = f"output/{id}.png"
+    imagepath = f"{OUTDIR}/{id}.png"
     gen_image_768(text, imagepath)
     imgcache[str(id)] = text
     logger.debug(f"{text};{imagepath}")
