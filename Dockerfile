@@ -16,7 +16,6 @@ LABEL "org.opencontainers.image.title"="Simple stupid Stable Diffusion UI"
 LABEL "org.opencontainers.image.description"="An extremely simple and stupid UI for running Stable Diffusion locally"
 LABEL "org.opencontainers.image.base.digest"="tiangolo/uvicorn-gunicorn-fastapi:python3.8"
 
-COPY app /app
 WORKDIR /app
 
 # Base OS libs
@@ -26,6 +25,10 @@ RUN apt update -y && apt upgrade -y
 COPY ./requirements.txt /
 RUN pip install --upgrade pip
 RUN pip install -r  /requirements.txt
+
+# do this in a separate, subsequent step after the pip install. 
+# See https://www.docker.com/blog/speed-up-your-development-flow-with-these-dockerfile-best-practices/
+COPY app /app
 
 
 #RUN pip install --no-cache-dir "uvicorn[standard]" gunicorn
