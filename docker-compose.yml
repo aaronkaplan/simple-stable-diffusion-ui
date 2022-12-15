@@ -15,18 +15,28 @@ services:
         # build: .
         ports:
             - "8000:8000"
+              # user: "1000:1000"   # replace by your uid:gid
         volumes:
-            # map the output dir to the host
-            - $PWD/output:/output  
+            # map the output dir (of the generated images) to the host
+            - ${PWD}/output:/output  
+            # map the host's homedir .cache/hugging face to the container, so that 
+            # we don't have to re-download the whole model every time we restart
+            # the container
+            - ${HOME}/.cache/huggingface/hub:/model-cache  
+            - ${HOME}/.cache/huggingface/datasets:/datasets
         environment:
             - MAX_WORKERS=2
             - REDIS_HOST=redis-stack
             - REDIS_PORT=6379
             - OUTPUTDIR=/output
+            - HUGGINGFACE_HUB_CACHE=/model-cache
+            - TRANSFORMERS_CACHE=/model-cache
+            - HF_DATASETS_CACHE=/datasets
         depends_on:
             - redis-stack
         command: /start-reload.sh
         deploy:
+              # we need this to map the NVIDIA GPU
               resources:
                 reservations:
                   devices:
