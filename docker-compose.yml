@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-    redis-stack:
+    redis-stack1:
         image: redis/redis-stack 
         ports:
           - "6379:6379"
@@ -34,7 +34,7 @@ services:
             - TRANSFORMERS_CACHE=/model-cache
             - HF_DATASETS_CACHE=/datasets
         depends_on:
-            - redis-stack
+            - redis-stack1
         command: /start-reload.sh
         deploy:
               # we need this to map the NVIDIA GPU
