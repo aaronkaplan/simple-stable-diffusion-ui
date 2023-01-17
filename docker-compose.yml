@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
     redis-stack:
         image: redis/redis-stack 
@@ -6,8 +6,8 @@ services:
           - "6379:6379"
           - "8001:8001"
         volumes:
-          - $PWD/cache/:/data 
-          - $PWD/redis-stack.conf:/redis-stack.conf
+          - ${PWD}/cache/:/data 
+          - ${PWD}/redis-stack.conf:/redis-stack.conf
 
     sd:
         restart: always
@@ -26,6 +26,7 @@ services:
             - ${HOME}/.cache/huggingface/datasets:/datasets
         environment:
             - MAX_WORKERS=2
+            - CUDA_VISIBLE_DEVICES=1
             - REDIS_HOST=redis-stack
             - REDIS_PORT=6379
             - OUTPUTDIR=/output
@@ -41,6 +42,6 @@ services:
                 reservations:
                   devices:
                     - driver: nvidia
-                      count: 1
+                      count: 2
                       capabilities: [gpu]
 
