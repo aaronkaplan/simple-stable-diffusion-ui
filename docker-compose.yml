@@ -27,7 +27,7 @@ services:
         environment:
             - MAX_WORKERS=2
             - CUDA_VISIBLE_DEVICES=1
-            - REDIS_HOST=redis-stack
+            - REDIS_HOST=redis-stack1
             - REDIS_PORT=6379
             - OUTPUTDIR=/output
             - HUGGINGFACE_HUB_CACHE=/model-cache
