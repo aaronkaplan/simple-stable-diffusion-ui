@@ -1,4 +1,5 @@
 fastapi>=0.88.0
+Jinja2==3.1.2
 huggingface-hub>=0.11.1
 pandas>=1.5.2
 python-multipart>=0.0.5
@@ -9,3 +10,4 @@ uvicorn>=0.20.0
 redis
 diffusers
 accelerate
+bitsandbytes==0.36.0.post2

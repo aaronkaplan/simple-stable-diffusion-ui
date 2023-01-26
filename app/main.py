@@ -1,8 +1,10 @@
 import uuid
 import os
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 from pydantic import BaseModel
 
 
@@ -12,10 +14,11 @@ from cache import Cache
 
 app = FastAPI()
 logger = logger.get_module_logger(__name__)
+templates = Jinja2Templates(directory="templates")
 
 
 class Inputs(BaseModel):
-    prompt: str
+    text: str
     image: bytes = File(...)
 
 
@@ -46,10 +49,11 @@ def generate_html_response(text: str, imagepath: str):
 
 
 @app.get("/sd/")
-async def textarea(text: str = defaultprompt, response_class=HTMLResponse):
+async def textarea(request: Request, text: str = defaultprompt, response_class=HTMLResponse):
     id = uuid.uuid4()
     imagepath = f"{OUTDIR}/{id}.png"
     gen_image_768(text, imagepath)
     imgcache[str(id)] = text
     logger.debug(f"{text};{imagepath}")
-    return generate_html_response(text, imagepath)
+    # return generate_html_response(text, imagepath)
+    return templates.TemplateResponse("index.html", {"request": request, "text": text, "imagepath": imagepath})
