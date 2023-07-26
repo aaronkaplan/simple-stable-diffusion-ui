@@ -10,4 +10,4 @@ uvicorn>=0.20.0
 redis
 diffusers
 accelerate
-bitsandbytes==0.36.0.post2
+bitsandbytes==0.41.0
